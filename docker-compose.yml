@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  backup:
+    build: ./backup
+    external_links:
+      - db:db
+
+  db:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+#      - /var/run/mysqld:/var/run/mysqld
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    env_file: .env

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+START_TIME=$(date +%s)
+/usr/bin/rsync -av --delete rsync://10.0.0.88/backup-mysql /home/lsi/backup-mysql
+/usr/bin/rsync -av --delete rsync://10.0.0.88/backup-ftpus /home/lsi/backup-ftpus
+END_TIME=$(date +%s)
+DIFF=$(( $END_TIME - $START_TIME ))
+echo "It took $DIFF seconds"
